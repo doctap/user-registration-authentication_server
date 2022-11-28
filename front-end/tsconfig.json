@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"sourceMap": true,
+		"sourceRoot": "./src/sourceMapRoot.ts",
+		"skipLibCheck": true,
+		"jsx": "react",
+		"module": "ESNext",
+		"outDir": "./dist",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+	},
+	"exclude": [
+		"types",
+		"dist",
+		"node_modules",
+		"./plugins/**/*",
+		"./typings/**/*",
+		"./built/**/*"
+  ],
+}

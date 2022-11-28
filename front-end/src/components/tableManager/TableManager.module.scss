@@ -1,0 +1,11 @@
+.buttons {
+	font-family: Material Icons;
+	min-width: 15%;
+	max-width: 20%;
+	display: flex;
+	justify-content: space-between;
+
+	&>* {
+		width: 3rem;
+	}
+}
