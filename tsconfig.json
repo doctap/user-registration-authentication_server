@@ -8,13 +8,17 @@
 		"baseUrl": "./src",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
+		"moduleResolution": "node",
 		"module": "CommonJS",
 		"strict": true,
 	},
+	"paths": {
+		"*": [
+			"node_modules/*",
+			"src/interfaces/*"
+		]
+	},
 	"include": [
-		"src/**/*.ts"
-	],
-	"exclude": [
-		"node_modules"
+		"./src/**/*"
 	]
 }
