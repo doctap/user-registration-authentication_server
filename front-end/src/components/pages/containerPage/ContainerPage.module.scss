@@ -1,0 +1,16 @@
+.containerPage {
+	min-width: fit-content;
+	max-width: 100%;
+	min-height: 100%;
+
+
+	&_contentCenter {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&_padding2rem {
+		padding: 2rem;
+	}
+}

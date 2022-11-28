@@ -1,0 +1,10 @@
+.currentAccount {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	white-space: nowrap;
+
+	.email {
+		margin-right: 1.5rem;
+	}
+}
