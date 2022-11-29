@@ -44,7 +44,13 @@ const pool = mysql2_1.default.createPool({
     password: 'root',
     database: 'myApp',
 }).promise();
-app.use((0, cors_1.default)({ origin: '*' }));
+const corsOptions = {
+    credentials: true,
+    optionsSuccessStatus: 200,
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'DELETE'],
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use(bodyParser.json());
 app.get('/api/users', (req, res) => {
     pool.query(`SELECT * FROM Users`)

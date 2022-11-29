@@ -1,7 +1,7 @@
 import express, { Application, Express, Request, Response } from 'express';
 import mysql from 'mysql2'
 import dotenv from 'dotenv';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import * as bodyParser from 'body-parser';
 import { IAuthenticationData, IRegistrationData, IRequestUserId, isSucceeded, ITypedRequestBody } from 'interfaces/UserInterface';
 import { getHash, getNowDate } from './utils/Utils'
@@ -21,7 +21,14 @@ const pool = mysql.createPool({
 	database: 'myApp',
 }).promise();
 
-app.use(cors({ origin: '*' }));
+const corsOptions: CorsOptions = {
+	credentials: true,
+	optionsSuccessStatus: 200,
+	origin: ['http://localhost:3000'],
+	methods: ['GET', 'POST', 'DELETE'],
+}
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.get('/api/users', (req: Request, res: Response) => {
