@@ -1,24 +1,17 @@
 {
 	"compilerOptions": {
-		"sourceMap": true,
-		"target": "es2017",
-		"alwaysStrict": true,
-		"noImplicitAny": true,
-		"outDir": "./dist",
-		"baseUrl": "./src",
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"moduleResolution": "node",
+		"target": "ES6",
 		"module": "CommonJS",
+		"moduleResolution": "node",
+		"outDir": "dist",
+		"esModuleInterop": true,
 		"strict": true,
-	},
-	"paths": {
-		"*": [
-			"node_modules/*",
-			"src/interfaces/*"
-		]
+		"forceConsistentCasingInFileNames": true,
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"baseUrl": "src",
 	},
 	"include": [
-		"./src/**/*"
+		"src"
 	]
 }
