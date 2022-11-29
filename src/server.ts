@@ -1,10 +1,11 @@
-import express, { Application, Express, Request, Response } from 'express';
-import mysql from 'mysql2'
+import express, { Application, Request, Response } from 'express';
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 import cors, { CorsOptions } from 'cors';
 import * as bodyParser from 'body-parser';
 import { IAuthenticationData, IRegistrationData, IRequestUserId, isSucceeded, ITypedRequestBody } from 'interfaces/UserInterface';
-import { getHash, getNowDate } from './utils/Utils'
+import { getHash, getNowDate } from './utils/Utils';
+
 
 dotenv.config();
 
