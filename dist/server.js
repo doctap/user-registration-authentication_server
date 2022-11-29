@@ -37,7 +37,7 @@ const app = (0, express_1.default)();
 const port = process.env.PORT;
 const urlencodedParser = express_1.default.urlencoded({ extended: false });
 const pool = mysql2_1.default.createPool({
-    connectionLimit: 5,
+    connectionLimit: 11,
     host: 'localhost',
     port: 3306,
     user: 'root',

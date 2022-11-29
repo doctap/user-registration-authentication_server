@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Application, Express, Request, Response } from 'express';
 import mysql from 'mysql2'
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -8,12 +8,12 @@ import { getHash, getNowDate } from './utils/Utils'
 
 dotenv.config();
 
-const app: Express = express();
+const app: Application = express();
 const port = process.env.PORT;
 const urlencodedParser = express.urlencoded({ extended: false });
 
 const pool = mysql.createPool({
-	connectionLimit: 5,
+	connectionLimit: 11,
 	host: 'localhost',
 	port: 3306,
 	user: 'root',
