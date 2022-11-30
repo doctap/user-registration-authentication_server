@@ -36,6 +36,8 @@ const corsOptions: CorsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+
+
 app.get('/api/users', (req: Request, res: Response) => {
 	pool.query(`SELECT * FROM Users`)
 		.then(r => res.send(r[0]))
@@ -43,7 +45,7 @@ app.get('/api/users', (req: Request, res: Response) => {
 });
 
 app.get('/', (req: Request, res: Response) => {
-	res.send('jcgvdcbeiduh3928923892')
+	res.send(require('./distClient/index.html'))
 });
 
 app.post('/block-users', urlencodedParser, (req: ITypedRequestBody<IRequestUserId>, res: Response) => {
