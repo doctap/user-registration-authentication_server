@@ -12,6 +12,8 @@ export interface IUser {
 	lastLogin: Date;
 }
 
+export type hashSizes = 512 | 224 | 256 | 384;
+
 export interface IRequestUserId { usersId: number[] }
 
 export interface ITypedRequestBody<T> extends Express.Request { body: T }
