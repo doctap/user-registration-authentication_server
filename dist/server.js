@@ -31,11 +31,13 @@ const mysql2_1 = __importDefault(require("mysql2"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const bodyParser = __importStar(require("body-parser"));
-const Utils_1 = require("./utils/Utils");
+const sha3_1 = require("sha3");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 const urlencodedParser = express_1.default.urlencoded({ extended: false });
+const getNowDate = (date, time) => `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}${time ? ' ' + date.toLocaleTimeString() : ''}`;
+const getHash = (a, size) => new sha3_1.SHA3(size).update(a).digest('hex');
 const pool = mysql2_1.default.createPool({
     connectionLimit: 11,
     host: 'localhost',
@@ -99,18 +101,18 @@ app.post('/registration', urlencodedParser, (req, res) => {
 		VALUES ( 
 			"${userData.firstName}",
 			"${userData.lastName}",
-			"${(0, Utils_1.getNowDate)(today, true)}",
-			"${(0, Utils_1.getNowDate)(today, false)}",
+			"${getNowDate(today, true)}",
+			"${getNowDate(today, false)}",
 			FALSE,
 			"${userData.email}",
-			"${(0, Utils_1.getHash)(userData.password, 256)}");`).then(() => pool.query(`SELECT IF (EXISTS (SELECT email FROM Users WHERE email="${userData.email}"), 1,0) AS isSucceeded;`).then(r => res.send(r[0][0]))).catch(e => console.log(e.message));
+			"${getHash(userData.password, 256)}");`).then(() => pool.query(`SELECT IF (EXISTS (SELECT email FROM Users WHERE email="${userData.email}"), 1,0) AS isSucceeded;`).then(r => res.send(r[0][0]))).catch(e => console.log(e.message));
 });
 app.post('/authentication', urlencodedParser, (req, res) => {
     const userData = req.body;
     if (!userData)
         return res.sendStatus(400);
     pool.query(`SELECT IF (EXISTS (SELECT email, hash, isBlocked FROM Users
-			WHERE email="${userData.email}" AND hash="${(0, Utils_1.getHash)(userData.password, 256)}" AND isBlocked=0), 1,0) AS isSucceeded;`).then(r => res.send(r[0][0]));
+			WHERE email="${userData.email}" AND hash="${getHash(userData.password, 256)}" AND isBlocked=0), 1,0) AS isSucceeded;`).then(r => res.send(r[0][0]));
 });
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${port}`);

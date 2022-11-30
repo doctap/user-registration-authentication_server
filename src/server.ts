@@ -3,15 +3,19 @@ import mysql from 'mysql2';
 import dotenv from 'dotenv';
 import cors, { CorsOptions } from 'cors';
 import * as bodyParser from 'body-parser';
-import { IAuthenticationData, IRegistrationData, IRequestUserId, isSucceeded, ITypedRequestBody } from 'interfaces/UserInterface';
-import { getHash, getNowDate } from './utils/Utils';
-
+import { hashSizes, IAuthenticationData, IRegistrationData, IRequestUserId, isSucceeded, ITypedRequestBody } from 'interfaces/UserInterface';
+import { SHA3 } from "sha3";
 
 dotenv.config();
 
 const app: Application = express();
 const port = process.env.PORT;
 const urlencodedParser = express.urlencoded({ extended: false });
+
+const getNowDate = (date: Date, time: boolean) =>
+	`${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}${time ? ' ' + date.toLocaleTimeString() : ''}`;
+
+const getHash = (a: string, size: hashSizes) => new SHA3(size).update(a).digest('hex');
 
 const pool = mysql.createPool({
 	connectionLimit: 11,
