@@ -61,7 +61,7 @@ app.get('/api/users', (req, res) => {
         .catch(e => console.log(e.message));
 });
 app.get('/', (req, res) => {
-    res.send('jcgvdcbeiduh3928923892');
+    res.send(require('./distClient/index.html'));
 });
 app.post('/block-users', urlencodedParser, (req, res) => {
     const usersId = req.body.usersId;
