@@ -9,7 +9,7 @@ import { SHA3 } from "sha3";
 dotenv.config();
 
 const app: Application = express();
-const port = process.env.PORT;
+const port = process.env.PORT ?? 8000;
 const urlencodedParser = express.urlencoded({ extended: false });
 
 const getNowDate = (date: Date, time: boolean) =>
