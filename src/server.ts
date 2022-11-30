@@ -36,16 +36,10 @@ const corsOptions: CorsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-
-
 app.get('/api/users', (req: Request, res: Response) => {
 	pool.query(`SELECT * FROM Users`)
 		.then(r => res.send(r[0]))
 		.catch(e => console.log(e.message));
-});
-
-app.get('/', (req: Request, res: Response) => {
-	res.send(require('./distClient/index.html'))
 });
 
 app.post('/block-users', urlencodedParser, (req: ITypedRequestBody<IRequestUserId>, res: Response) => {
