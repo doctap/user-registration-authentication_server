@@ -60,6 +60,9 @@ app.get('/api/users', (req, res) => {
         .then(r => res.send(r[0]))
         .catch(e => console.log(e.message));
 });
+app.get('/', (req, res) => {
+    res.send('jcgvdcbeiduh3928923892');
+});
 app.post('/block-users', urlencodedParser, (req, res) => {
     const usersId = req.body.usersId;
     if (!req.body)

@@ -42,6 +42,10 @@ app.get('/api/users', (req: Request, res: Response) => {
 		.catch(e => console.log(e.message));
 });
 
+app.get('/', (req: Request, res: Response) => {
+	res.send('jcgvdcbeiduh3928923892')
+});
+
 app.post('/block-users', urlencodedParser, (req: ITypedRequestBody<IRequestUserId>, res: Response) => {
 	const usersId = req.body.usersId;
 	if (!req.body)
